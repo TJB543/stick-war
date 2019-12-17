@@ -335,6 +335,7 @@ function collision() {
         p2.x += 2;
       }
   }
+  }
 }
 
 function draw() {
