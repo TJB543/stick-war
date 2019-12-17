@@ -278,6 +278,8 @@ function setup() {
 
 function collision() {
   dx = dist(p1.x, p1.y-20, p2.x, p2.y-20);
+  
+  //P1 jumping on P2
    if(p1.y < p2.y-30 && p1.x > p2.x-10 && p1.x < p2.x+10){
      p1.ground = p2.y-30
      p1.jumping = false
@@ -291,6 +293,7 @@ function collision() {
     p1.grounded = false
   }
   
+  //P2 jumping on P1
   if(p2.y < p1.y-30 && p2.x > p1.x-10 && p2.x < p1.x+10){
      p2.ground = p1.y-30
      p2.jumping = false
@@ -303,6 +306,8 @@ function collision() {
     }
     p2.grounded = false
   }
+  
+  //Character collision
   if (dx < 10) {
     if(p1.x < p2.x){
       p1.x -= p1.move
@@ -312,6 +317,11 @@ function collision() {
       p2.x -= p2.move
     }
     }
+  
+  //Punch collision(PvP mode only)
+  if(MODE == 2) {
+    //^C,^V all new material here
+  }
 }
 
 function draw() {
