@@ -339,9 +339,17 @@ function collision() {
 
 function draw() {
   background(220);
+  if(p1.grounded == true && p2.grounded == true) {
+    TITLE = true;
+  }else{
+    TITLE = false;
+  }
+  titleScreen();
   collision()
   p2.update();
   p1.update();
+  if(MODE != 0){
   p2.movement();
   p1.movement();
+  }
 }
