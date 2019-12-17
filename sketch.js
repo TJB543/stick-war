@@ -1,3 +1,158 @@
+function titleScreen() {
+  if (TITLE == true) {
+    if (MODE == 0) {
+      PvP.show();
+      coop.show();
+      background(220);
+      textAlign(CENTER);
+      textSize(35);
+      text("STICK WAR", width / 2, height / 2 - 50);
+      coop.position(width / 2 - 90, height / 2 + 20);
+      PvP.position(width / 2 + 50, height / 2 + 20);
+      coop.mousePressed(cooperativeMode);
+      PvP.mousePressed(pvpMode);
+    } else {
+      home.show();
+      home.mousePressed(HOME);
+    }
+  }
+}
+
+function cooperativeMode() {
+  PvP.hide();
+  coop.hide();
+  MODE = 1;
+}
+
+function pvpMode() {
+  PvP.hide();
+  coop.hide();
+  MODE = 2;
+}
+
+function HOME() {
+  home.hide();
+  MODE = 0;
+  p1.x = width / 16;
+  p1.y = -50;
+  p1.grounded = false;
+  p2.x = width / 1.125;
+  p2.y = -50;
+  p2.grounded = false;
+}
+
+class character_1_pvp {
+  constructor() {
+    this.x = width / 16;
+    this.y = -50;
+    this.move = 1;
+    this.g = 1;
+    this.v = 0;
+    this.lenghth = 0;
+    this.grounded = false;
+  }
+  update() {
+    if (this.grounded == false) {
+      this.y += this.g
+      this.g += this.v
+      this.v += 0.01
+      this.grounded = false
+    }
+    if (this.y >= height - 30) {
+      this.y = height - 30
+      this.g = 1;
+      this.v = 0;
+      this.grounded = true
+    }
+    fill(0);
+    stroke(0);
+    rect(this.x, this.y, 10, 30)
+  }
+  movement() {
+    if (keyIsDown(68)) {
+      this.x += this.move;
+    }
+    if (keyIsDown(65)) {
+      this.x -= this.move;
+    }
+    if (keyIsDown(87) || this.grounded == false) {
+      this.grounded = false
+      this.y -= this.move * 5;
+    }
+    if (MODE == 2) {
+      fill(0);
+      stroke(0);
+      if (keyIsDown(83)) {
+        rect(this.x + 8, this.y + 10, this.lenghth, 10);
+        if (this.lenghth < 20) {
+          this.lenghth += 5;
+        }
+      } else {
+        rect(this.x + 8, this.y + 10, this.lenghth, 10);
+        if (this.lenghth >= 0) {
+          this.lenghth -= 5;
+        }
+      }
+    }
+  }
+}
+
+class character_2_pvp {
+  constructor() {
+    this.x = (width / 1.125);
+    this.y = -50;
+    this.g = 1;
+    this.move = 1;
+    this.v = 0;
+    this.lenghth = 0;
+    this.grounded = false
+  }
+  update() {
+    if (this.grounded == false) {
+      this.y += this.g
+      this.g += this.v
+      this.v += 0.01
+      this.grounded = false
+    }
+    if (this.y >= height - 30) {
+      this.y = height - 30
+      this.g = 1;
+      this.v = 0;
+      this.grounded = true
+    }
+    fill(255);
+    stroke(255);
+    rect(this.x, this.y, 10, 30)
+  }
+  movement() {
+    if (keyIsDown(74)) {
+      this.x -= this.move;
+    } else {}
+    if (keyIsDown(76)) {
+      this.x += this.move;
+    } else {}
+    if (keyIsDown(73) || this.grounded == false) {
+      this.grounded = false
+      this.y -= this.move * 5;
+    }
+    if (MODE == 2) {
+      fill(255)
+      stroke(255)
+      if (keyIsDown(75)) {
+        rect(this.x + 4, this.y + 10, this.lenghth, 10)
+        if (this.lenghth > -20) {
+          this.lenghth -= 5;
+        }
+      } else {
+        rect(this.x + 4, this.y + 10, this.lenghth, 10);
+        if (this.lenghth <= 0) {
+          this.lenghth += 5;
+        }
+      }
+    }
+  }
+}
+
 class character_1_co {
   constructor() {
     this.x = width / 16;
@@ -100,12 +255,24 @@ class character_2_co {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  TITLE = false;
   MODE = 0;
+  coop = createButton('Co-op')
+  PvP = createButton('PvP')
+  home = createButton('Home')
+  home.position(0, 0)
+  home.hide();
+  coop.hide();
+  PvP.hide();
   do_once_1 = false
   do_once_2 = false
   if(MODE = 1){
   p1 = new character_1_co();
   p2 = new character_2_co();
+  }
+  if(MODE == 2){
+    p1 = new character_1_pvp();
+    p2 = new character_2_pvp(); 
   }
 }
 
