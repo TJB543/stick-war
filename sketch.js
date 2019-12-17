@@ -19,12 +19,16 @@ function titleScreen() {
 }
 
 function cooperativeMode() {
+  p1 = new character_1_co();
+  p2 = new character_2_co();
   PvP.hide();
   coop.hide();
   MODE = 1;
 }
 
 function pvpMode() {
+  p1 = new character_1_pvp();
+  p2 = new character_2_pvp();
   PvP.hide();
   coop.hide();
   MODE = 2;
@@ -266,14 +270,8 @@ function setup() {
   PvP.hide();
   do_once_1 = false
   do_once_2 = false
-  if(MODE = 1){
-  p1 = new character_1_co();
-  p2 = new character_2_co();
-  }
-  if(MODE == 2){
     p1 = new character_1_pvp();
     p2 = new character_2_pvp(); 
-  }
 }
 
 function collision() {
@@ -335,7 +333,7 @@ function collision() {
         p2.x += 2;
       }
   }
-  }
+}
 }
 
 function draw() {
