@@ -265,7 +265,9 @@ function setup() {
 }
 
 function collision() {
-  dx = dist(p1.x, p1.y-20, p2.x, p2.y-20);
+  dxl = dist(p1.x, p1.y-20, p2.x, p2.y-20);
+  dxm = dist(p1.x, p1.y-10, p2.x, p2.y-10);
+  dxh = dist(p1.x, p1.y, p2.x, p2.y);
   
   //P1 jumping on P2
    if(p1.y < p2.y-30 && p1.x > p2.x-10 && p1.x < p2.x+10){
@@ -296,7 +298,7 @@ function collision() {
   }
   
   //Character collision
-  if (dx < 10) {
+  if (dxl < 10 || dxm < 10 || dxh < 10) {
     if(p1.x < p2.x){
       p1.x -= p1.move
       p2.x += p2.move
