@@ -200,17 +200,6 @@ class character_1_co {
       this.grounded = false
       this.jumping = false
     }
-    // if(keyIsDown(83)){
-    //   rect(this.x+5,this.y+10,this.lenghth,10)
-    //   if(this.lenghth < 50){
-    //     this.lenghth += 5;
-    //   }
-    // }else{
-    //   rect(this.x+5,this.y+10,this.lenghth,10);
-    //   if(this.lenghth >= 0){
-    //     this.lenghth -= 5;
-    //   }
-    // }
   }
 }
 
