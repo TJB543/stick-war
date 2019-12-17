@@ -1,4 +1,4 @@
-class character_1 {
+class character_1_co {
   constructor() {
     this.x = width / 16;
     this.y = -50;
@@ -54,7 +54,7 @@ class character_1 {
   }
 }
 
-class character_2 {
+class character_2_co {
   constructor() {
     this.x = (width / 1.125);
     this.y = -50;
@@ -103,8 +103,10 @@ function setup() {
   MODE = 0;
   do_once_1 = false
   do_once_2 = false
-  p1 = new character_1();
-  p2 = new character_2();
+  if(MODE = 1){
+  p1 = new character_1_co();
+  p2 = new character_2_co();
+  }
 }
 
 function collision() {
