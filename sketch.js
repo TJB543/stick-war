@@ -21,6 +21,7 @@ function titleScreen() {
 function cooperativeMode() {
   p1 = new character_1_co();
   p2 = new character_2_co();
+  //co-op mode!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   PvP.hide();
   coop.hide();
   MODE = 1;
