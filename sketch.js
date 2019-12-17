@@ -40,9 +40,11 @@ function HOME() {
   MODE = 0;
   p1.x = width / 16;
   p1.y = -50;
+  p1.v = 0;
   p1.grounded = false;
   p2.x = width / 1.125;
   p2.y = -50;
+  p2.v = 0;
   p2.grounded = false;
 }
 
