@@ -160,6 +160,7 @@ class character_1_co {
     this.move = 1;
     this.g = 1;
     this.v = 0;
+    this.lenghth = 0;
     this.grounded = false;
     this.ground = height-30
   }
@@ -194,6 +195,17 @@ class character_1_co {
       this.grounded = false
       this.jumping = false
     }
+    // if(keyIsDown(83)){
+    //   rect(this.x+5,this.y+10,this.lenghth,10)
+    //   if(this.lenghth < 50){
+    //     this.lenghth += 5;
+    //   }
+    // }else{
+    //   rect(this.x+5,this.y+10,this.lenghth,10);
+    //   if(this.lenghth >= 0){
+    //     this.lenghth -= 5;
+    //   }
+    // }
   }
 }
 
@@ -308,7 +320,20 @@ function collision() {
   
   //Punch collision(PvP mode only)
   if(MODE == 2) {
-    //^C,^V all new material here
+    pnch1 = dist(p1.x + p1.lenghth, p1.y - 15, p2.x, p2.y - 15);
+    pnch2 = dist(p2.x + p2.lenghth, p2.y - 15, p1.x, p1.y - 15);
+    pnchC = dist(p2.x + p2.lenghth, p2.y - 15, p1.x + p1.lenghth, p1.y - 15);
+        if (p1.x < p2.x) {
+      if (pnch1 <= 5) {
+        p2.x += 25;
+      }
+      if (pnch2 <= 5) {
+        p1.x -= 25;
+      }
+      if (pnchC <= 5) {
+        p1.x -= 2;
+        p2.x += 2;
+      }
   }
 }
 
