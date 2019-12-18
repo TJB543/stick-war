@@ -232,7 +232,7 @@ class character_2_co {
     }
     fill(255);
     stroke(255);
-    rect(this.x, this.y, 10, 30)
+    image(p1_image,this.x, this.y, 10, 30)
   }
   movement() {
     if (keyIsDown(74)) {
@@ -251,6 +251,7 @@ class character_2_co {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  p1_image = loadImage('character-1!!!.png');
   TITLE = false;
   MODE = 0;
   coop = createButton('Co-op')
