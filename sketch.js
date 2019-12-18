@@ -21,7 +21,7 @@ function titleScreen() {
 function cooperativeMode() {
   p1 = new character_1_co();
   p2 = new character_2_co();
-  //co-op mode!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //co-op mode!!!!!!!
   PvP.hide();
   coop.hide();
   MODE = 1;
@@ -252,17 +252,18 @@ class character_2_co {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   p1_image = loadImage('Character 1!!!.png');
+  p2image = loadImage('character 2!!!.png');
   TITLE = false;
   MODE = 0;
-  coop = createButton('Co-op')
-  PvP = createButton('PvP')
-  home = createButton('Home')
-  home.position(0, 0)
+  coop = createButton('Co-op');
+  PvP = createButton('PvP');
+  home = createButton('Home');
+  home.position(0, 0);
   home.hide();
   coop.hide();
   PvP.hide();
-  do_once_1 = false
-  do_once_2 = false
+  do_once_1 = false;
+  do_once_2 = false;
     p1 = new character_1_pvp();
     p2 = new character_2_pvp(); 
 }
