@@ -252,7 +252,7 @@ class character_2_co {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   p1_image = loadImage('Character 1!!!.png');
-  p2_image = loadImage('character 2!!!.png');
+  p2_image = loadImage('character-2!!!.png');
   TITLE = false;
   MODE = 0;
   coop = createButton('Co-op');
