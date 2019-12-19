@@ -73,7 +73,7 @@ class character_1_pvp {
     }
     fill(0);
     stroke(0);
-    rect(this.x, this.y, 10, 30)
+    image(p2_image, this.x, this.y, 10, 30)
   }
   movement() {
     if (keyIsDown(68)) {
@@ -129,7 +129,7 @@ class character_2_pvp {
     }
     fill(255);
     stroke(255);
-    rect(this.x, this.y, 10, 30)
+    image(p1_image, this.x, this.y, 10, 30)
   }
   movement() {
     if (keyIsDown(74)) {
@@ -188,7 +188,7 @@ class character_1_co {
     }
     fill(0);
     stroke(0);
-    rect(this.x, this.y, 10, 30)
+    image(p2_image, this.x, this.y, 10, 30)
   }
   movement() {
     if (keyIsDown(68)) {
@@ -252,7 +252,7 @@ class character_2_co {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   p1_image = loadImage('Character 1!!!.png');
-  p2image = loadImage('character 2!!!.png');
+  p2_image = loadImage('character 2!!!.png');
   TITLE = false;
   MODE = 0;
   coop = createButton('Co-op');
