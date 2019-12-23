@@ -30,12 +30,18 @@ function cooperativeMode() {
 function pvpMode() {
   p1 = new character_1_pvp();
   p2 = new character_2_pvp();
+  p1.health = 100;
+  p2.health = 100;
   PvP.hide();
   coop.hide();
   MODE = 2;
 }
 
 function HOME() {
+  if(MODE == 2) {
+    p1.health = 100;
+    p2.health = 100;
+  }
   home.hide();
   MODE = 0;
   p1.x = width / 16;
@@ -46,6 +52,8 @@ function HOME() {
   p2.y = -50;
   p2.v = 0;
   p2.grounded = false;
+  p1 = new character_1_co;
+  p2 = new character_2_co;
 }
 
 class character_1_pvp {
@@ -57,6 +65,7 @@ class character_1_pvp {
     this.v = 0;
     this.lenghth = 0;
     this.grounded = false;
+    this.health = 100;
   }
   update() {
     if (this.grounded == false) {
@@ -71,9 +80,22 @@ class character_1_pvp {
       this.v = 0;
       this.grounded = true
     }
-    fill(0);
     stroke(0);
+    fill(0);
+    rect(this.x - 10, this.y - 20 , 25, 5);
+    if (this.health <= 20) {
+      fill(255, 0, 0);
+    } else {
+      fill(0, 255, 0);
+    }
+    rect(this.x - 10, this.y - 20 , this.health / 4, 5);
+    fill(0);
     image(p2_image, this.x, this.y, 10, 30)
+    if (this.health <= 0) {
+      p2Win = true;
+    } else {
+      p2Win = false;
+    }
   }
   movement() {
     if (keyIsDown(68)) {
@@ -112,7 +134,8 @@ class character_2_pvp {
     this.move = 1;
     this.v = 0;
     this.lenghth = 0;
-    this.grounded = false
+    this.grounded = false;
+    this.health = 100;
   }
   update() {
     if (this.grounded == false) {
@@ -127,9 +150,22 @@ class character_2_pvp {
       this.v = 0;
       this.grounded = true
     }
-    fill(255);
     stroke(255);
+    fill(255);
+    rect(this.x - 10, this.y - 20 , 25, 5);
+    if (this.health <= 20) {
+      fill(255, 0, 0);
+    } else {
+      fill(0, 255, 0);
+    }
+    rect(this.x - 10, this.y - 20 , this.health / 4, 5);
+    fill(255);
     image(p1_image, this.x, this.y, 10, 30)
+    if (this.health <= 0) {
+      p1Win = true;
+    } else {
+      p1Win = false;
+    }
   }
   movement() {
     if (keyIsDown(74)) {
@@ -160,6 +196,26 @@ class character_2_pvp {
   }
 }
 
+function PvP_winner() {
+  if (MODE == 2) {
+    if (p1Win == true) {
+      background(0);
+      textAlign(CENTER);
+      textSize(width / 20);
+      fill(255)
+      text("PLAYER 1 WINS", width / 2, height / 2 - 30);
+      home.position(width / 2, height / 2 + 50);
+    } else if (p2Win == true) {
+      background(255);
+      textAlign(CENTER);
+      textSize(width / 20);
+      fill(0);
+      text("PLAYER 2 WINS", width / 2, height / 2 - 30);
+      home.position(width / 2, height / 2 + 50);
+    }
+  }
+}
+
 class character_1_co {
   constructor() {
     this.x = width / 16;
@@ -169,7 +225,7 @@ class character_1_co {
     this.v = 0;
     this.lenghth = 0;
     this.grounded = false;
-    this.ground = height-30
+    this.ground = height - 30
   }
   update() {
     if (this.grounded == false) {
@@ -178,8 +234,8 @@ class character_1_co {
       this.v += 0.01
       this.grounded = false
       this.jumping = false
-    } else{}
-    if(this.y >= this.ground){
+    } else {}
+    if (this.y >= this.ground) {
       this.y = this.ground;
       this.g = 1;
       this.v = 0;
@@ -198,7 +254,7 @@ class character_1_co {
       this.x -= this.move;
     }
     if (keyIsDown(87) || this.jumping == false) {
-      this.y -= this.move*5;
+      this.y -= this.move * 5;
       this.grounded = false
       this.jumping = false
     }
@@ -222,8 +278,8 @@ class character_2_co {
       this.v += 0.01
       this.grounded = false
       this.jumping = false
-    } 
-    if(this.y>=this.ground){
+    }
+    if (this.y >= this.ground) {
       this.y = this.ground
       this.g = 1;
       this.v = 0;
@@ -232,7 +288,7 @@ class character_2_co {
     }
     fill(255);
     stroke(255);
-    image(p1_image,this.x, this.y, 10, 30)
+    image(p1_image, this.x, this.y, 10, 30)
   }
   movement() {
     if (keyIsDown(74)) {
@@ -244,7 +300,7 @@ class character_2_co {
     if (keyIsDown(73) || this.jumping == false) {
       this.jumping = false
       this.grounded = false
-      this.y -= this.move*5;
+      this.y -= this.move * 5;
     }
   }
 }
@@ -254,6 +310,8 @@ function setup() {
   p1_image = loadImage('Character 1!!!.png');
   p2_image = loadImage('character-2!!!.png');
   TITLE = false;
+  p1Win = false;
+  p2Win = false;
   MODE = 0;
   coop = createButton('Co-op');
   PvP = createButton('PvP');
@@ -264,87 +322,90 @@ function setup() {
   PvP.hide();
   do_once_1 = false;
   do_once_2 = false;
-    p1 = new character_1_pvp();
-    p2 = new character_2_pvp(); 
+  p1 = new character_1_co();
+  p2 = new character_2_co();
 }
 
 function collision() {
-  dxl = dist(p1.x, p1.y-20, p2.x, p2.y-20);
-  dxm = dist(p1.x, p1.y-10, p2.x, p2.y-10);
+  dxl = dist(p1.x, p1.y - 20, p2.x, p2.y - 20);
+  dxm = dist(p1.x, p1.y - 10, p2.x, p2.y - 10);
   dxh = dist(p1.x, p1.y, p2.x, p2.y);
-  
+
   //P1 jumping on P2
-   if(p1.y < p2.y-30 && p1.x > p2.x-10 && p1.x < p2.x+10){
-     p1.ground = p2.y-30
-     p1.jumping = false
-     p1.grounded = false
-     do_once_1 = false
-  } else{
-    if(do_once_1 == false){
+  if (p1.y < p2.y - 30 && p1.x > p2.x - 10 && p1.x < p2.x + 10) {
+    p1.ground = p2.y - 30
+    p1.jumping = false
+    p1.grounded = false
+    do_once_1 = false
+  } else {
+    if (do_once_1 == false) {
       do_once_1 = true
       p1.ground = height - 30;
     }
     p1.grounded = false
   }
-  
+
   //P2 jumping on P1
-  if(p2.y < p1.y-30 && p2.x > p1.x-10 && p2.x < p1.x+10){
-     p2.ground = p1.y-30
-     p2.jumping = false
-     p2.grounded = false
-     do_once_2 = false
-  } else{
-    if(do_once_2 == false){
+  if (p2.y < p1.y - 30 && p2.x > p1.x - 10 && p2.x < p1.x + 10) {
+    p2.ground = p1.y - 30
+    p2.jumping = false
+    p2.grounded = false
+    do_once_2 = false
+  } else {
+    if (do_once_2 == false) {
       do_once_2 = true
       p2.ground = height - 30;
     }
     p2.grounded = false
   }
-  
+
   //Character collision
   if (dxl < 10 || dxm < 10 || dxh < 10) {
-    if(p1.x < p2.x){
+    if (p1.x < p2.x) {
       p1.x -= p1.move
       p2.x += p2.move
-    }else{
+    } else {
       p1.x += p1.move
       p2.x -= p2.move
     }
-    }
-  
+  }
+
   //Punch collision(PvP mode only)
-  if(MODE == 2) {
+  if (MODE == 2) {
     pnch1 = dist(p1.x + p1.lenghth, p1.y - 15, p2.x, p2.y - 15);
     pnch2 = dist(p2.x + p2.lenghth, p2.y - 15, p1.x, p1.y - 15);
     pnchC = dist(p2.x + p2.lenghth, p2.y - 15, p1.x + p1.lenghth, p1.y - 15);
-        if (p1.x < p2.x) {
+    if (p1.x < p2.x) {
       if (pnch1 <= 5) {
         p2.x += 25;
+        p2.health -= 10;
       }
       if (pnch2 <= 5) {
         p1.x -= 25;
+        p1.health -=10;
       }
       if (pnchC <= 5) {
         p1.x -= 2;
         p2.x += 2;
       }
+    }
   }
-}
 }
 
 function draw() {
   background(220);
-  if(p1.grounded == true && p2.grounded == true) {
+  if (p1.grounded == true && p2.grounded == true) {
     TITLE = true;
-  }else{
+  } else {
     TITLE = false;
   }
   titleScreen();
-  collision()
+  collision();
   p2.update();
   p1.update();
-  if(MODE != 0){
-  p2.movement();
-  p1.movement();
+  if (MODE != 0) {
+    p2.movement();
+    p1.movement();
   }
+  PvP_winner();
 }
