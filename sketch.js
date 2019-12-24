@@ -2,6 +2,7 @@ function titleScreen() {
   if (TITLE == true) {
     if (MODE == 0) {
       hub.show();
+      hub.size(255, 255);
       hub.mousePressed(hub_url);
       PvP.show();
       coop.show();
@@ -15,6 +16,7 @@ function titleScreen() {
       PvP.mousePressed(pvpMode);
     } else {
       home.show();
+      home.position(0, 0);
       home.mousePressed(HOME);
     }
   }
@@ -48,6 +50,7 @@ function HOME() {
     p1.health = 100;
     p2.health = 100;
   }
+  home.position(0, 0);
   home.hide();
   MODE = 0;
   p1.x = width / 16;
@@ -71,15 +74,15 @@ class character_1_pvp {
     this.v = 0;
     this.lenghth = 0;
     this.grounded = false;
-    this.ground = height - 30
+    this.ground = height - 30;
   }
   update() {
     if (this.grounded == false) {
-      this.y += this.g
-      this.g += this.v
-      this.v += 0.01
-      this.grounded = false
-      this.jumping = false
+      this.y += this.g;
+      this.g += this.v;
+      this.v += 0.01;
+      this.grounded = false;
+      this.jumping = false;
     } else {}
     if (this.y >= this.ground) {
       this.y = this.ground;
@@ -232,7 +235,8 @@ function PvP_winner() {
       text("PLAYER 2 WINS", width / 2, height / 2 - 30);
       home.position(width / 2, height / 2 + 50);
     }
-  }
+  } else {
+    home.position(0, 0);
 }
 
 class character_1_co {
@@ -326,8 +330,8 @@ class character_2_co {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  hub = createImg("Hub.png");
-  hub.size(50,50);
+  hub = createImg("Hub.png")
+  hub.size(20,20);
   hub.position(10,10);
   hub.show()
   p1_image = loadImage('Character 1!!!.png');
