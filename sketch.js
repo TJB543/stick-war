@@ -17,8 +17,6 @@ function titleScreen() {
       home.show();
       home.mousePressed(HOME);
     }
-  }else{
-    hub.hide();
   }
 }
 
