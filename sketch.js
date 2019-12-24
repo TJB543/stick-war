@@ -2,6 +2,7 @@ function titleScreen() {
   if (TITLE == true) {
     if (MODE == 0) {
       hub.show();
+      hub.mousePressed(hub_url);
       PvP.show();
       coop.show();
       background(220);
@@ -13,7 +14,6 @@ function titleScreen() {
       coop.mousePressed(cooperativeMode);
       PvP.mousePressed(pvpMode);
     } else {
-      hub.hide();
       home.show();
       home.mousePressed(HOME);
     }
@@ -37,6 +37,10 @@ function pvpMode() {
   PvP.hide();
   coop.hide();
   MODE = 2;
+}
+
+function hub_url() {
+  window.location.assign("https://tjb543.github.io/hub/");
 }
 
 function HOME() {
@@ -323,6 +327,8 @@ class character_2_co {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   hub = createImg("Hub.png")
+  hub.position(10,10);
+  hub.show()
   p1_image = loadImage('Character 1!!!.png');
   p2_image = loadImage('character-2!!!.png');
   TITLE = false;
@@ -429,8 +435,11 @@ function draw() {
   p2.update();
   p1.update();
   if (MODE != 0) {
+    hub.hide();
     p2.movement();
     p1.movement();
+  }else{
+    hub.show();
   }
   PvP_winner();
 }
