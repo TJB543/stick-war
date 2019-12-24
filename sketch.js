@@ -447,4 +447,7 @@ function draw() {
     hub.show();
   }
   PvP_winner();
+  if (MODE != 0) {
+    home.position(0, 0);
+  }
 }
