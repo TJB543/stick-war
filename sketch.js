@@ -326,7 +326,8 @@ class character_2_co {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  hub = createImg("Hub.png")
+  hub = createImg("Hub.png");
+  hub.size(50,50);
   hub.position(10,10);
   hub.show()
   p1_image = loadImage('Character 1!!!.png');
