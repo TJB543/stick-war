@@ -329,14 +329,17 @@ class character_2_co {
   }
 }
 
+function preload() {
+    p1_image = loadImage('Character 1!!!.png');
+  p2_image = loadImage('character-2!!!.png');
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   hub = createImg("Hub.png")
   hub.size(50,50);
   hub.position(10,10);
   hub.show()
-  p1_image = loadImage('Character 1!!!.png');
-  p2_image = loadImage('character-2!!!.png');
   TITLE = false;
   p1Win = false;
   p2Win = false;
