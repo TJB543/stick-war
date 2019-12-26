@@ -2,7 +2,7 @@ function titleScreen() {
   if (TITLE == true) {
     if (MODE == 0) {
       hub.show();
-      hub.size(255, 255);
+      hub.size(50, 50);
       hub.mousePressed(hub_url);
       PvP.show();
       coop.show();
@@ -237,6 +237,7 @@ function PvP_winner() {
     }
   } else {
     home.position(0, 0);
+  }
 }
 
 class character_1_co {
@@ -331,7 +332,7 @@ class character_2_co {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   hub = createImg("Hub.png")
-  hub.size(20,20);
+  hub.size(50,50);
   hub.position(10,10);
   hub.show()
   p1_image = loadImage('Character 1!!!.png');
@@ -447,5 +448,4 @@ function draw() {
     hub.show();
   }
   PvP_winner();
-}
 }
